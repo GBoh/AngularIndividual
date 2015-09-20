@@ -1,0 +1,31 @@
+﻿<div class="row">
+    <form class="col-md-12" ng-submit="main.login()" novalidate name="loginForm">
+        <!-- Email -->
+        <div class="form-group">
+            <label class="col-md-2 control-label text-right" for="email">
+                Email:
+            </label>
+            <span ng-show="loginForm.Email.$touched && loginForm.Email.$error.required" class="text-danger">
+                Email is Required
+            </span>
+            <input class="form-control" type="email" id="email" name="email" ng-model="main.username" ng-required="true" />
+
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+            <label class="col-md-2 control-label text-right" for="password">
+                Password:
+            </label>
+            <span ng-show="loginForm.Password.$touched && loginForm.Password.$error.required" class="text-danger">
+                password is Required
+            </span>
+            <input class="form-control" type="password" id="password" name="password" ng-model="main.password" required />
+        </div>
+
+        <!-- submit -->
+        <div>
+            <input class="btn btn-primary col-md-offset-2" type="submit" id="submit" value="Login" ng-disabled="loginForm.$invalid" />
+        </div>
+    </form>
+</div>

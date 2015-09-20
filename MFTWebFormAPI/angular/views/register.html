@@ -1,0 +1,66 @@
+﻿<div class="row">
+
+    <form class="col-md-12" ng-cloak novalidate ng-submit="main.register()" name="loginForm">
+
+        <!-- First Name -->
+        <div class="form-group">
+            <label class ="col-md-2 control-label text-right" for="firstName">
+                First Name:
+            </label>
+                <span ng-show="loginForm.FirstName.$touched && loginForm.FirstName.$error.required" class="text-danger">
+                    First name is required
+                </span>
+            <input class="form-control" type="text" id ="firstName" name="firstName" ng-model="main.newUser.FirstName" required/>
+        </div>
+
+        <!-- Last Name -->
+        <div class="form-group">
+            <label class="col-md-2 control-label text-right" for="lastName">
+                Last Name:
+            </label>
+                <span ng-show="loginForm.LastName.$touched && loginForm.LastName.$error.required" class="text-danger">
+                    Last name is required
+                </span>
+            <input class="form-control" type="text" id="lastName" name="lastName" ng-model="main.newUser.LastName" required />
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+            <label class="col-md-2 control-label text-right" for="email">
+                Email:
+            </label>
+                <span ng-show="loginForm.Email.$touched && loginForm.Email.$error.required" class="text-danger">
+                    Email is Required
+                </span>
+            <input class="form-control" type="email" id="email" name="email" ng-model="main.newUser.Email" ng-required="true" />
+            
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+            <label class="col-md-2 control-label text-right" for="password">
+                Password:
+            </label>
+                <span ng-show="loginForm.Password.$touched && loginForm.Password.$error.required" class="text-danger">
+                    password is Required
+                </span>
+            <input class="form-control" type="password" id="password" name="password" ng-model="main.newUser.Password" required />
+        </div>
+
+        <!-- confirm pass -->
+        <div class="form-group">
+            <label class="col-md-2 control-label text-right" for="confirmPassword">
+                Confirm Password:
+            </label>
+                <span ng-show="loginForm.ConfirmPassword.$touched && loginForm.ConfirmPassword.$error.required" class="text-danger">
+                    Must confirm password
+                </span>
+            <input class="form-control" type="password" id="confirmPassword" name="confirmPassword" ng-model="main.newUser.ConfirmPassword" required />
+        </div>
+
+        <!-- submit -->
+        <div>
+            <input class="btn btn-primary col-md-offset-2" type="submit" id="register"  value="register" ng-disabled="loginForm.$invalid"/>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,93 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html ng-app="MFTWeb">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @* base angular *@
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/angular-resource.js"></script>
+    <script src="~/Scripts/angular-route.js"></script>
+    <script src="~/angular/scripts/app.js"></script>
+
+    @* Inject stuff here *@
+    <script>
+        @*angular
+            .module('MFTWeb')
+            .constant('routeUrls', {
+                mftApi:'@Url.HttpRouteUrl("MftApi", null)'
+            });*@
+    </script>
+
+    @*  services *@
+    <script src="~/angular/scripts/services/accountServices.js"></script>
+    <script src="~/angular/scripts/services/routeService.js"></script>
+    <script src="~/angular/scripts/services/termService.js"></script>
+    <script src="~/angular/scripts/services/authService.js"></script>
+    <script src="~/angular/scripts/services/currentUserService.js"></script>
+
+    @* controllers *@
+    <script src="~/angular/scripts/controllers/RegisterController.js"></script>
+    <script src="~/angular/scripts/controllers/LoginController.js"></script>
+    <script src="~/angular/scripts/controllers/HomeController.js"></script>
+    <script src="~/angular/scripts/controllers/TermController.js"></script>
+    <script src="~/angular/scripts/controllers/navController.js"></script>
+
+</head>
+<body>
+
+    @* nav bar *@
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header" ng-controller="NavController as nav">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#/home/">MFT Web Forms</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#/home/">Home</a>
+                    </li>
+
+                    <li>
+                        <a href="#/register/">Register</a>
+                    </li>
+
+                    <li>
+                        <a href="#/login/">Login</a>
+                    </li>
+
+                    <li>
+                        <a href="#/home" ng-click="nav.logout()">Log Out</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    @* body content *@
+    <div class="container body-content">
+        <div>&nbsp;</div>
+        <ng-view></ng-view>
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - MFT Web Forms</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>
