@@ -1,15 +1,39 @@
 ﻿<div class="row">
-    welcome {{main.username}}
-    <div >
-        <ul>
-            <li>There will be terms below me</li>
-            <li ng-repeat="term in main.listTerms()">
-                <!--{{term.name}} --> test
-            </li>
-        </ul>
+    <h3 ng-show="main.username">welcome {{main.username}}</h3>
+
+    <div class="text-right">
+        <input class="btn btn-primary" type="button" id="newTerm" ng-click="termForm = !termForm" ng-model="termForm" value="New Term" />
     </div>
 
-    <div >
-        No terms try adding some
-    </div>
+    <form ng-show="termForm" ng-submit="main.addTerm()" novalidate name="newTermForm" class="col-md-12">
+        <label>
+            Name: <input class="form-control" id="termName" name="termName" ng-model="main.newTerm" type="text" required />
+        </label>
+        <input class="btn btn-sm" type="submit" value="Add" ng-disabled="newTermForm.$invalid" />
+    </form>
+
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Total Hours
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="term in main.listTerms">
+                <td >
+                  {{term.id}} {{term.name}}
+                    <input type="button" class="btn btn-sm" value="New Entry" ng-click="main.newMFTEntry()" />
+                </td>
+                <td>
+                    {{term.totalHours}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

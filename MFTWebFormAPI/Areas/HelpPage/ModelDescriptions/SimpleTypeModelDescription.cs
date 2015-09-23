@@ -1,6 +1,0 @@
-namespace MFTWebFormAPI.Areas.HelpPage.ModelDescriptions
-{
-    public class SimpleTypeModelDescription : ModelDescription
-    {
-    }
-}

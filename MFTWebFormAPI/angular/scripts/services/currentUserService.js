@@ -3,30 +3,19 @@
         .module('MFTWeb')
         .factory('currentUser', function () {
             var self = this;
-            return {
-                setUser: function (username, token) {
-                    var profil
+            var user = {
+                username: '',
+                token: '',
+                isLoggedIn: function () {
+                    return this.token;
                 }
             };
-            this.setUser = function (username, token) {
-
-                var profile = {
-                    username: '',
-                    token: '',
-                    get loggedIn() {
-                        return this.token;
-                    }
-                };
-
-                var setProfile = function () {
-                    profile.username = username;
-                    profile.token = token;
-                };
-
-                return {
-                    setProfile: setProfile,
-                    profile: profile
-                };
+            return {
+                setUser: function(username, token) {
+                    user.username = username;
+                    user.token = token;
+                },
+                profile: user
             };
         });
 })();

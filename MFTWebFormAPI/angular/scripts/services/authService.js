@@ -1,12 +1,13 @@
 ﻿(function () {
     angular
         .module('MFTWeb')
-        .service('authService', function ($http, $resource, $location) {
+        .service('authService', function ($q, $http, $resource, $location, currentUser) {
             var self = this;
 
             self.login = function (username, password) {
                 self.loginMessage = '';
                 var data = 'grant_type=password&username=' + username + '&password=' + password;
+                var defered = $q.defer();
 
                 $http.post('/token', data, {
                     headers: {
@@ -16,21 +17,17 @@
                 .success(function (result) {
                     self.login = null;
                     self.accessToken = result.access_token;
+                    currentUser.setUser(username, self.accessToken);
 
                     $http.defaults.headers.common.Authorization = 'Bearer ' + self.accessToken;
-                    $location.path('/terms');
 
-                    //console.log(currentUser.setUser(username, self.accessToken));
-                    //console.log(self.accessToken);
-                    //console.log(result);
-                    //$location.path('term/');
-                    //keith's session login
-                    //$window.sessionStorage.setItem("token", result.access_token);
-                    //var t = $window.sessionStorage.getItem("token");
+                    defered.resolve();
                 })
                 .error(function () {
                     self.loginMessage = 'Invalid username/password';
+                    defered.reject();
                 });
+                return defered.promise;
             };
         });
 })();

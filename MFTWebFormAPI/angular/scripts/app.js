@@ -30,6 +30,11 @@
                 controller: 'TermController',
                 controllerAs: 'main'
             })
+            .when('/newMft', {
+                templateUrl: '/angular/views/mftForm.html',
+                controller: 'MFTFormController',
+                controllerAs: 'main'
+            })
             .otherwise({
                 templateUrl: '/angular/views/notFound.html'
             });

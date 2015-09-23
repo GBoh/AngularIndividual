@@ -1,0 +1,59 @@
+﻿<div class="row">
+    <form class="col-md-12">
+        <!--  ng-submit="main.AddFormEntry()" -->
+        <!-- Time Data -->
+        <div class="row form-group">
+            <label>
+                Date:
+            </label>
+            <br />
+            <input class="form-control" type="date" ng-model="main.mftForm.Date" />
+        </div>
+
+        <div class="row form-group">
+            <label>
+                Start&nbsp;Time:
+            </label>
+            <br />
+            <input class="form-control" type="time" ng-model="main.mftForm.StartTime" />
+        </div>
+
+        <div class="row form-group">
+            <label>
+                Clock&nbsp;Hours:
+            </label>
+            <br />
+            <input class="form-control" type="text" ng-model="main.mftForm.ClockHours" />
+        </div>
+
+        <hr />
+        <!-- Dropdowns -->
+        <div class="row" ng-cloak>
+            <div ng-repeat="menu in main.dropDowns" class="col-md-20 form-group">
+                <label>{{menu.name}}</label>
+                <select class="form-control" ng-model="main.mftForm[menu.model]" ng-options="option.name for option in menu.data"></select>
+            </div>
+
+            <div class="col-md-20 form-group">
+                <label>
+                    Supervisor Initials
+                </label>
+                <input ng-model="main.mftForm.Initials" class="form-control" type="text" />
+            </div>
+        </div>
+
+        <hr />
+        <!-- Comment and submit -->
+        <div class="row form-group">
+            <label class="comments">
+                Comments: (Optional)<br />
+                <textarea ng-model="main.mftForm.Comments" class="form-control comments"></textarea>
+            </label>
+        </div>
+
+        <div class="row">
+            <input class="btn btn-primary" ng-click="main.form();" type="submit" />
+        </div>
+    </form>
+</div>
+

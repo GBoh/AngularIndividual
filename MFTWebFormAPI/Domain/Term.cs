@@ -9,6 +9,6 @@ namespace MFTWebFormAPI.Domain {
         public int Id { get; set; }
         public string Name { get; set; }
         public IList<MFTFormSubmission> MFTForms { get; set; }
-        public ApplicationUser ApplicationUser { get; set; }
+        public string User { get; set; }
     }
 }

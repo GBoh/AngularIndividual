@@ -13,7 +13,10 @@ namespace MFTWebFormAPI.Models {
     public class ApplicationUser : IdentityUser {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public IList<MFTFormSubmission> MFTForms { get; set; }
+        public IList<Term> Terms { get; set; }
         public IList<Group> Groups { get; set; }
+        public IList<ApplicationUser> Students { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType) {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -28,15 +31,17 @@ namespace MFTWebFormAPI.Models {
             : base("DefaultConnection", throwIfV1Schema: false) {
         }
 
+        public static ApplicationDbContext Create() {
+            return new ApplicationDbContext();
+        }
+
         public IDbSet<Event> Events { get; set; }
         public IDbSet<Group> Groups { get; set; }
         public IDbSet<ObservableData> ObservableData { get; set; }
         public IDbSet<Supervisor> Supervisors { get; set; }
         public IDbSet<MFTFormSubmission> MFTFormSubmissions { get; set; }
         public IDbSet<Term> Terms { get; set; }
+        public IDbSet<School> Schools { get; set; }
 
-        public static ApplicationDbContext Create() {
-            return new ApplicationDbContext();
-        }
     }
 }

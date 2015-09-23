@@ -1,14 +1,21 @@
-﻿'use strict';
-
+﻿
 (function () {
     angular
         .module('MFTWeb')
-        .controller('TermController', function ($http, $location, termService) {
-            console.log('hi');
+        .controller('TermController', function ($location, termService, currentUser) {
             var self = this;
-            //var test = termService.getTerms();
-            //console.log(test);
-            self.listTerms = termService.getTerms();
-           
+            this.username = currentUser.profile.username;
+            this.listTerms = termService.getTerms();
+
+            this.addTerm = function () {
+                var term = {name: self.newTerm, user: self.username}
+                termService.postTerm(term);
+                self.listTerms = termService.getTerms();
+            };
+
+            this.newMFTEntry = function () {
+                console.log('new entry');
+                $location.path('/newMft');
+            };
         });
 })();
